@@ -46,11 +46,6 @@ public class ApplicationUser implements UserDetails {
     private String password;
     private boolean locked;
     @Enumerated
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(
-            name = "app_user_role",
-            referencedColumnName = "id"
-    )
     private AppUserRole appUserRole;
     private boolean enabled = false;
 

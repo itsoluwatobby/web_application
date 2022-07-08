@@ -2,8 +2,11 @@ package com.itsoluwatobby.spring.email.client.registration;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class RegistrationRequest {
 
