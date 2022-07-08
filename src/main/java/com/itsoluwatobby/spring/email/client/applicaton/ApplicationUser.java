@@ -51,14 +51,13 @@ public class ApplicationUser implements UserDetails {
 
     public ApplicationUser(String firstName,
                            String lastName,
-                           String email, String password,
-                           boolean locked,
+                           String email,
+                           String password,
                            AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.locked = locked;
         this.appUserRole = appUserRole;
     }
 

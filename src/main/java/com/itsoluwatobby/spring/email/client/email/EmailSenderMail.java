@@ -20,14 +20,15 @@ public class EmailSenderMail implements EmailSender{
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-            helper.setSubject(email);
+            helper.setText(email, true);
             helper.setTo(to);
+            helper.setSubject("Please confirm the mail");
             helper.setFrom("akintobby@gmail.com");
-            helper.setText("Please confirm the mail");
+            mailSender.send(mimeMessage);
         }
         catch (MessagingException e) {
             log.error("unable to send email");
-            throw new RuntimeException();
+            throw new IllegalStateException("failed to send email");
         }
 
     }
