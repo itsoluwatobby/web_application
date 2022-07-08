@@ -2,7 +2,7 @@
 
 ### A fully responsive site with different apis, user login page and security to secure all api endpoints.
 
-## Languages involve:
+## Languages involved:
 * Java
 * HTML AND CSS
 * Javascript
