@@ -1,6 +1,5 @@
-package com.itsoluwatobby.spring.email.client.webConfig;
+package com.itsoluwatobby.spring.email.client.security.config;
 
-import com.itsoluwatobby.spring.email.client.applicaton.ApplicationUser;
 import com.itsoluwatobby.spring.email.client.applicaton.ApplicationUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -18,16 +17,18 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @EnableWebSecurity
 public class WebConfig extends WebSecurityConfigurerAdapter {
 
-    private final PasswordEncoder encoder;
+    private final PasswordEncoder passwordEncoder;
     private final ApplicationUserService applicationUserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().csrfTokenRepository(
-                        CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and()
+                .csrf().disable()
+//                .csrf().csrfTokenRepository(
+//                        CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                .and()
                 .authorizeRequests()
+                .antMatchers("/api/v1/registration").permitAll()
                 .antMatchers("/", "hello", "/js/*", "/css/*").permitAll()
                 .anyRequest()
                 .authenticated()
@@ -44,7 +45,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(applicationUserService);
-        provider.setPasswordEncoder(encoder);
+        provider.setPasswordEncoder(passwordEncoder);
 
         return provider;
     }

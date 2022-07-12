@@ -1,9 +1,6 @@
 package com.itsoluwatobby.spring.email.client.applicaton;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,10 +13,11 @@ import java.util.Collections;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode
+@NoArgsConstructor
 @Table(name = "app_user", uniqueConstraints = @UniqueConstraint(
         columnNames = "email"
 ))
-@NoArgsConstructor
 public class ApplicationUser implements UserDetails {
 
     @Id
@@ -44,10 +42,10 @@ public class ApplicationUser implements UserDetails {
     private String email;
     @Column(length = 20)
     private String password;
-    private boolean locked;
+    private Boolean locked = false;
     @Enumerated
     private AppUserRole appUserRole;
-    private boolean enabled = false;
+    private Boolean enabled = false;
 
     public ApplicationUser(String firstName,
                            String lastName,

@@ -1,35 +1,44 @@
 package com.itsoluwatobby.spring.email.client.email;
 
+
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+@Service
 @AllArgsConstructor
 @Slf4j
-public class EmailSenderMail implements EmailSender{
+public class EmailSenderService implements EmailSender{
 
-    private final JavaMailSender mailSender;
+//    private final Logger LOGGER = LoggerFactory.getLogger(EmailSenderService.class);
+    private JavaMailSender mailSender;
 
     @Override
-    public void sendTo(String to, String email) {
+    @Async
+    public void sendEmail(String toEmail, String body) {
 
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-            helper.setText(email, true);
-            helper.setTo(to);
-            helper.setSubject("Please confirm the mail");
             helper.setFrom("akintobby@gmail.com");
+            helper.setTo(toEmail);
+            helper.setText(body, true);
+            helper.setSubject("Please confirm the mail");
+
             mailSender.send(mimeMessage);
         }
         catch (MessagingException e) {
-            log.error("unable to send email");
+            log.error("unable to send mail");
             throw new IllegalStateException("failed to send email");
         }
-
     }
 }
+

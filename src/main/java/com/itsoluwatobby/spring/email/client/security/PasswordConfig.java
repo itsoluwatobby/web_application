@@ -1,4 +1,4 @@
-package com.itsoluwatobby.spring.email.client.webConfig.config;
+package com.itsoluwatobby.spring.email.client.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
