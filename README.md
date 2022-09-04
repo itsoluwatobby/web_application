@@ -1,16 +1,13 @@
 # WEB APPLICATION
 
 ---
-### A fully responsive site with different apis, user login page and security to secure all api endpoints.
+### A backend registration and login application and security to secure all api endpoints.
 
 ## Languages involved:
 ___
 * Java
-* HTML AND CSS
-* Javascript
 
 ## Features:
-- [x] Security - using spring boot
+- [x] Security - using spring boot security 
 - [x] password encryption - using BCrypt password encoder
-- [x] responsive passages using - html, css and javascript
 - [x] email sender - Java mail sender
